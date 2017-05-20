@@ -1,36 +1,27 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.kaka.androidbakery.ui.DetailFragment">
 
-    <TextView
-        android:id="@+id/tv_label_ingredients"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/sliding_tabs"
+        style="@style/CategoryTab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:text="Ingredients"
-        android:textAppearance="?android:textAppearanceMedium" />
+        android:layout_marginEnd="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp"
+        app:tabGravity="fill" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_ingredients_list"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_label_ingredients" />
+        android:layout_marginEnd="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="3dp" />
 
-    <TextView
-        android:id="@+id/tv_label_steps"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rv_ingredients_list"
-        android:fontFamily="sans-serif-medium"
-        android:text="Steps"
-        android:textAppearance="?android:textAppearanceMedium" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_steps_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv_label_steps" />
-
-</RelativeLayout>
+</LinearLayout>

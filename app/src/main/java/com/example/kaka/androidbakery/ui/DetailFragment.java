@@ -3,9 +3,8 @@ package com.example.kaka.androidbakery.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,7 @@ import com.example.kaka.androidbakery.R;
 import com.example.kaka.androidbakery.data.Ingredient;
 import com.example.kaka.androidbakery.data.Recipe;
 import com.example.kaka.androidbakery.data.Step;
-import com.example.kaka.androidbakery.utilities.IngredientAdapter;
-import com.example.kaka.androidbakery.utilities.StepsAdapter;
+import com.example.kaka.androidbakery.utilities.TabAdapter;
 
 import java.util.List;
 
@@ -28,12 +26,10 @@ import butterknife.ButterKnife;
  */
 public class DetailFragment extends Fragment {
 
-
-    @BindView(R.id.rv_ingredients_list)
-    RecyclerView recyclerViewIngredientList;
-    @BindView(R.id.rv_steps_list)
-    RecyclerView recyclerViewStepsList;
-
+    @BindView(R.id.viewPager)
+    ViewPager viewPager;
+    @BindView(R.id.sliding_tabs)
+    TabLayout tabLayout;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -51,19 +47,9 @@ public class DetailFragment extends Fragment {
         List<Ingredient> ingredientList = recipe.getIngredients();
         List<Step> stepList = recipe.getSteps();
 
-        IngredientAdapter ingredientAdapter = new IngredientAdapter(ingredientList);
-        StepsAdapter stepsAdapter = new StepsAdapter(stepList);
-
-        recyclerViewIngredientList.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerViewIngredientList.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewIngredientList.setHasFixedSize(true);
-        recyclerViewIngredientList.setAdapter(ingredientAdapter);
-
-
-        recyclerViewStepsList.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerViewStepsList.setItemAnimator(new DefaultItemAnimator());
-        recyclerViewStepsList.setHasFixedSize(true);
-        recyclerViewStepsList.setAdapter(stepsAdapter);
+        TabAdapter tabAdapter = new TabAdapter(getChildFragmentManager(), ingredientList, stepList);
+        viewPager.setAdapter(tabAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
         return view;
     }
