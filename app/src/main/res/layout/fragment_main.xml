@@ -1,12 +1,38 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.kaka.androidbakery.ui.MainFragment">
 
-    <TextView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_recipe_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent" />
 
-</FrameLayout>
+    <RelativeLayout
+        android:id="@+id/rl_empty_view_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_empty_view_image"
+            android:layout_width="@dimen/empty_view_image"
+            android:layout_height="@dimen/empty_view_image"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/empty_view_image"
+            android:src="@drawable/ic_local_dining_black_24dp" />
+
+        <TextView
+            android:id="@+id/tv_empty_view_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_empty_view_image"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/empty_view_title_text"
+            android:textAppearance="?android:textAppearanceMedium" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,12 +1,36 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.kaka.androidbakery.ui.DetailFragment">
 
     <TextView
+        android:id="@+id/tv_label_ingredients"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:text="Ingredients"
+        android:textAppearance="?android:textAppearanceMedium" />
 
-</FrameLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_ingredients_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_label_ingredients" />
+
+    <TextView
+        android:id="@+id/tv_label_steps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rv_ingredients_list"
+        android:fontFamily="sans-serif-medium"
+        android:text="Steps"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_steps_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_label_steps" />
+
+</RelativeLayout>
