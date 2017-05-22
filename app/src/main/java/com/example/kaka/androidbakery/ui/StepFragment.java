@@ -17,6 +17,7 @@ import com.example.kaka.androidbakery.utilities.StepsAdapter;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -40,12 +41,12 @@ public class StepFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_step, container, false);
-
+        ButterKnife.bind(this, view);
         savedInstanceState = this.getArguments();
         stepList = savedInstanceState.getParcelableArrayList(STEPS_KEY);
         StepsAdapter stepsAdapter = new StepsAdapter(stepList);
-
-        recyclerViewStepsList.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewStepsList.setLayoutManager(linearLayoutManager);
         recyclerViewStepsList.setItemAnimator(new DefaultItemAnimator());
         recyclerViewStepsList.setHasFixedSize(true);
         recyclerViewStepsList.setAdapter(stepsAdapter);

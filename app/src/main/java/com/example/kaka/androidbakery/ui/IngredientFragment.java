@@ -17,6 +17,7 @@ import com.example.kaka.androidbakery.utilities.IngredientAdapter;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 /**
@@ -39,12 +40,12 @@ public class IngredientFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ingredient, container, false);
-
+        ButterKnife.bind(this, view);
         savedInstanceState = this.getArguments();
         ingredientList = savedInstanceState.getParcelableArrayList(INGREDIENT_KEY);
         IngredientAdapter ingredientAdapter = new IngredientAdapter(ingredientList);
-
-        recyclerViewIngredientList.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerViewIngredientList.setLayoutManager(linearLayoutManager);
         recyclerViewIngredientList.setItemAnimator(new DefaultItemAnimator());
         recyclerViewIngredientList.setHasFixedSize(true);
         recyclerViewIngredientList.setAdapter(ingredientAdapter);
