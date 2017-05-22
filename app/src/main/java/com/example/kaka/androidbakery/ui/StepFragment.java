@@ -2,6 +2,7 @@ package com.example.kaka.androidbakery.ui;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import com.example.kaka.androidbakery.R;
 import com.example.kaka.androidbakery.data.Step;
 import com.example.kaka.androidbakery.utilities.StepsAdapter;
+import com.example.kaka.androidbakery.utilities.Utils;
 
 import java.util.List;
 
@@ -23,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StepFragment extends Fragment {
+public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOnClickHandler {
 
     public static final String STEPS_KEY = "steps";
     @BindView(R.id.rv_steps_list)
@@ -44,7 +46,7 @@ public class StepFragment extends Fragment {
         ButterKnife.bind(this, view);
         savedInstanceState = this.getArguments();
         stepList = savedInstanceState.getParcelableArrayList(STEPS_KEY);
-        StepsAdapter stepsAdapter = new StepsAdapter(stepList);
+        StepsAdapter stepsAdapter = new StepsAdapter(stepList, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewStepsList.setLayoutManager(linearLayoutManager);
         recyclerViewStepsList.setItemAnimator(new DefaultItemAnimator());
@@ -54,4 +56,15 @@ public class StepFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onClick() {
+        if (Utils.isLargeScreen(getActivity())) {
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fl_step_detail_container, new DetailStepFragment())
+                    .commit();
+        } else {
+            Intent intent = new Intent(getActivity(), DetailStepActivity.class);
+            startActivity(intent);
+        }
+    }
 }

@@ -21,10 +21,12 @@ import butterknife.ButterKnife;
 public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder> {
 
     private static final String LOG_TAG = StepsAdapter.class.getSimpleName();
+    private StepAdapterOnClickHandler stepAdapterOnClickHandler;
     private List<Step> stepList;
 
-    public StepsAdapter(List<Step> stepList) {
+    public StepsAdapter(List<Step> stepList, StepAdapterOnClickHandler stepAdapterOnClickHandler) {
         this.stepList = stepList;
+        this.stepAdapterOnClickHandler = stepAdapterOnClickHandler;
     }
 
     @Override
@@ -46,7 +48,11 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
         return stepList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public interface StepAdapterOnClickHandler {
+        void onClick();
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.tv_step)
         TextView textViewStep;
@@ -54,6 +60,12 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
         public MyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            stepAdapterOnClickHandler.onClick();
         }
     }
 }
