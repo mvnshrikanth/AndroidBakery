@@ -21,8 +21,8 @@ import butterknife.ButterKnife;
 public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder> {
 
     private static final String LOG_TAG = StepsAdapter.class.getSimpleName();
-    private StepAdapterOnClickHandler stepAdapterOnClickHandler;
-    private List<Step> stepList;
+    private final StepAdapterOnClickHandler stepAdapterOnClickHandler;
+    private final List<Step> stepList;
 
     public StepsAdapter(List<Step> stepList, StepAdapterOnClickHandler stepAdapterOnClickHandler) {
         this.stepList = stepList;

@@ -30,7 +30,6 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
     public static final String STEPS_KEY = "steps";
     @BindView(R.id.rv_steps_list)
     RecyclerView recyclerViewStepsList;
-    private List<Step> stepList;
 
     public StepFragment() {
         // Required empty public constructor
@@ -45,7 +44,7 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
         View view = inflater.inflate(R.layout.fragment_step, container, false);
         ButterKnife.bind(this, view);
         savedInstanceState = this.getArguments();
-        stepList = savedInstanceState.getParcelableArrayList(STEPS_KEY);
+        List<Step> stepList = savedInstanceState.getParcelableArrayList(STEPS_KEY);
         StepsAdapter stepsAdapter = new StepsAdapter(stepList, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewStepsList.setLayoutManager(linearLayoutManager);

@@ -20,8 +20,8 @@ import java.util.List;
 
 public class TabAdapter extends FragmentPagerAdapter {
 
-    private List<Ingredient> ingredientList;
-    private List<Step> stepList;
+    private final List<Ingredient> ingredientList;
+    private final List<Step> stepList;
 
     public TabAdapter(FragmentManager fm, List<Ingredient> ingredientList, List<Step> stepList) {
         super(fm);

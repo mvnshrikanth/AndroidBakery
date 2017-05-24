@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.MyViewHolder> {
 
     private static final String LOG_TAG = IngredientAdapter.class.getSimpleName();
-    private List<Ingredient> ingredientList;
+    private final List<Ingredient> ingredientList;
 
     public IngredientAdapter(List<Ingredient> ingredientList) {
         this.ingredientList = ingredientList;

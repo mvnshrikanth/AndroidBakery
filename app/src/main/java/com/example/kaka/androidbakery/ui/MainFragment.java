@@ -45,7 +45,7 @@ public class MainFragment extends Fragment implements RecipeAdapter.RecipeAdapte
     RecyclerView recyclerView;
     @BindView(R.id.rl_empty_view_layout)
     View emptyView;
-    RecipeAdapter recipeAdapter;
+    private RecipeAdapter recipeAdapter;
     private List<Recipe> recipeList;
     private List<Step> stepList;
     private List<Ingredient> ingredientList;

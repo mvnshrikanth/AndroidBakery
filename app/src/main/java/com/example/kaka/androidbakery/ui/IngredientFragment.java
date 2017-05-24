@@ -28,7 +28,6 @@ public class IngredientFragment extends Fragment {
     public static final String INGREDIENT_KEY = "ingredient";
     @BindView(R.id.rv_ingredients_list)
     RecyclerView recyclerViewIngredientList;
-    private List<Ingredient> ingredientList;
 
     public IngredientFragment() {
         // Required empty public constructor
@@ -42,7 +41,7 @@ public class IngredientFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ingredient, container, false);
         ButterKnife.bind(this, view);
         savedInstanceState = this.getArguments();
-        ingredientList = savedInstanceState.getParcelableArrayList(INGREDIENT_KEY);
+        List<Ingredient> ingredientList = savedInstanceState.getParcelableArrayList(INGREDIENT_KEY);
         IngredientAdapter ingredientAdapter = new IngredientAdapter(ingredientList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewIngredientList.setLayoutManager(linearLayoutManager);
