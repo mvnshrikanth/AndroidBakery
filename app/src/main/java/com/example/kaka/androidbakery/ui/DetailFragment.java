@@ -39,9 +39,10 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        savedInstanceState = this.getArguments();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
-        Recipe recipe = this.getArguments().getParcelable(MainFragment.RECIPE_DATA);
+        Recipe recipe = savedInstanceState.getParcelable(MainFragment.RECIPE_DATA);
         ButterKnife.bind(this, view);
 
         List<Ingredient> ingredientList = recipe.getIngredients();

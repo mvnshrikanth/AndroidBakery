@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.kaka.androidbakery.R;
 import com.example.kaka.androidbakery.data.Step;
@@ -28,6 +29,7 @@ import butterknife.ButterKnife;
 public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOnClickHandler {
 
     public static final String STEPS_KEY = "steps";
+    public static final String STEP_DATA = "step";
     @BindView(R.id.rv_steps_list)
     RecyclerView recyclerViewStepsList;
 
@@ -56,14 +58,19 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
     }
 
     @Override
-    public void onClick() {
+    public void onClick(Step step) {
         if (Utils.isLargeScreen(getActivity())) {
             getFragmentManager().beginTransaction()
                     .replace(R.id.fl_step_detail_container, new DetailStepFragment())
                     .commit();
         } else {
-            Intent intent = new Intent(getActivity(), DetailStepActivity.class);
-            startActivity(intent);
+            if (!step.getVideoURL().equals("")) {
+                Intent intent = new Intent(getActivity(), DetailStepActivity.class);
+                intent.putExtra(STEP_DATA, step);
+                startActivity(intent);
+            } else {
+                Toast.makeText(getActivity().getApplicationContext(), "No video for this step.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

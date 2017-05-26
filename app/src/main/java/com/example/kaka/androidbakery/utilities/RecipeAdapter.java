@@ -68,6 +68,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
                         .into(holder.imageViewRecipe);
                 break;
         }
+
         holder.textViewRecipeName.setText(recipe.getName());
 
     }
@@ -103,8 +104,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
 
         @Override
         public void onClick(View v) {
-            Recipe recipe = recipeList.get(getAdapterPosition());
-            recipeAdapterOnClickHandler.onClick(recipe);
+            recipeAdapterOnClickHandler.onClick(recipeList.get(getAdapterPosition()));
         }
     }
 }
