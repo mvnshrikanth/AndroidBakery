@@ -4,6 +4,6 @@
     <string name="recipe_image">Recipe Image</string>
     <string name="empty_view_title_text">You dont have any recipes to show &#8230;</string>
     <string name="empty_view_image">Empty View Image</string>
-    <string name="appwidget_text">EXAMPLE</string>
+    <string name="appwidget_text">Show Recipe</string>
     <string name="add_widget">Add widget</string>
 </resources>
