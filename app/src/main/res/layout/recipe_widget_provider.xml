@@ -4,10 +4,19 @@
     android:background="#09C"
     android:padding="@dimen/widget_margin">
 
-    <ImageView
-        android:id="@+id/iv_recipe_widget"
+    <ListView
+        android:id="@+id/lv_widgetRecipeList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_widgetEmptyView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_local_dining_black_24dp" />
+        android:gravity="center"
+        android:text="@string/empty_widget"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

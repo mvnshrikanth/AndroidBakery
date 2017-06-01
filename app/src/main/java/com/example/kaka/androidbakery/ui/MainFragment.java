@@ -39,8 +39,8 @@ import okhttp3.Response;
 public class MainFragment extends Fragment implements RecipeAdapter.RecipeAdapterOnClickHandler {
 
     public static final String RECIPE_DATA = "recipe";
+    public static final String BAKERY_BASE_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json";
     private static final String LOG_TAG = MainFragment.class.getSimpleName();
-    private static final String BAKERY_BASE_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json";
     @BindView(R.id.rv_recipe_list)
     RecyclerView recyclerView;
     @BindView(R.id.rl_empty_view_layout)

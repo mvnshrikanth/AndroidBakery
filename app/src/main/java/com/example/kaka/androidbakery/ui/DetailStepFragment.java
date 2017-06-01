@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.kaka.androidbakery.R;
 import com.example.kaka.androidbakery.data.Step;
@@ -41,6 +42,9 @@ public class DetailStepFragment extends Fragment implements ExoPlayer.EventListe
 
     @BindView(R.id.exo_video)
     SimpleExoPlayerView simpleExoPlayerView;
+    @BindView(R.id.tv_recipe_step_instruction)
+    TextView textViewStepInstructions;
+
     private View mView;
 
     private SimpleExoPlayer simpleExoPlayer;
@@ -74,6 +78,8 @@ public class DetailStepFragment extends Fragment implements ExoPlayer.EventListe
             simpleExoPlayer.prepare(mediaSource);
             simpleExoPlayer.setPlayWhenReady(true);
         }
+
+        textViewStepInstructions.setText(step.getDescription());
 
         return view;
     }
