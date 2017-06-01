@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.widget.RemoteViews;
 
 import com.example.kaka.androidbakery.R;
-import com.example.kaka.androidbakery.ui.DetailActivity;
 
 /**
  * Created by Kaka on 5/31/2017.
@@ -26,13 +25,16 @@ public class RecipeWidgetProvider extends AppWidgetProvider {
 
     private void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.recipe_widget_provider);
-        setRemoteAdapter(context, remoteViews);
-        Intent intent = new Intent(context, DetailActivity.class);
+        Intent intent = new Intent(context, RecipeWidgetRemoteViewsService.class);
+        remoteViews.setRemoteAdapter(R.id.lv_widgetRecipeList, intent);
+        remoteViews.setEmptyView(R.id.lv_widgetRecipeList, R.id.tv_widgetEmptyView);
+
+
         PendingIntent pendingIntent = TaskStackBuilder.create(context)
                 .addNextIntentWithParentStack(intent)
                 .getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
         remoteViews.setPendingIntentTemplate(R.id.lv_widgetRecipeList, pendingIntent);
-        remoteViews.setEmptyView(R.id.lv_widgetRecipeList, R.id.tv_widgetEmptyView);
+
         appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.lv_widgetRecipeList);
         appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
     }
