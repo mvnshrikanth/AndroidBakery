@@ -1,4 +1,4 @@
-package com.example.kaka.androidbakery.utilities;
+package com.example.kaka.androidbakery.adapter;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -20,8 +20,8 @@ import java.util.List;
 
 public class TabAdapter extends FragmentPagerAdapter {
 
-    private List<Ingredient> ingredientList;
-    private List<Step> stepList;
+    private final List<Ingredient> ingredientList;
+    private final List<Step> stepList;
 
     public TabAdapter(FragmentManager fm, List<Ingredient> ingredientList, List<Step> stepList) {
         super(fm);

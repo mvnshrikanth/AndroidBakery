@@ -1,4 +1,4 @@
-package com.example.kaka.androidbakery.utilities;
+package com.example.kaka.androidbakery.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -26,9 +26,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
 
     private static final String LOG_TAG = RecipeAdapter.class.getSimpleName();
     private final RecipeAdapterOnClickHandler recipeAdapterOnClickHandler;
+    private final Context context;
     private List<Recipe> recipeList;
-
-    private Context context;
 
     public RecipeAdapter(Context context, RecipeAdapterOnClickHandler recipeAdapterOnClickHandler) {
         this.context = context;
@@ -47,23 +46,29 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Recipe recipe = recipeList.get(position);
 
-        if (recipe.getName().equals("Nutella Pie")) {
-            Picasso.with(context)
-                    .load(R.drawable.nutella_pie)
-                    .into(holder.imageViewRecipe);
-        } else if (recipe.getName().equals("Brownies")) {
-            Picasso.with(context)
-                    .load(R.drawable.brownie)
-                    .into(holder.imageViewRecipe);
-        } else if (recipe.getName().equals("Yellow Cake")) {
-            Picasso.with(context)
-                    .load(R.drawable.yellow_cake)
-                    .into(holder.imageViewRecipe);
-        } else {
-            Picasso.with(context)
-                    .load(R.drawable.cheesecake)
-                    .into(holder.imageViewRecipe);
+        switch (recipe.getName()) {
+            case "Nutella Pie":
+                Picasso.with(context)
+                        .load(R.drawable.nutella_pie)
+                        .into(holder.imageViewRecipe);
+                break;
+            case "Brownies":
+                Picasso.with(context)
+                        .load(R.drawable.brownie)
+                        .into(holder.imageViewRecipe);
+                break;
+            case "Yellow Cake":
+                Picasso.with(context)
+                        .load(R.drawable.yellow_cake)
+                        .into(holder.imageViewRecipe);
+                break;
+            default:
+                Picasso.with(context)
+                        .load(R.drawable.cheesecake)
+                        .into(holder.imageViewRecipe);
+                break;
         }
+
         holder.textViewRecipeName.setText(recipe.getName());
 
     }
@@ -99,8 +104,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
 
         @Override
         public void onClick(View v) {
-            Recipe recipe = recipeList.get(getAdapterPosition());
-            recipeAdapterOnClickHandler.onClick(recipe);
+            recipeAdapterOnClickHandler.onClick(recipeList.get(getAdapterPosition()));
         }
     }
 }

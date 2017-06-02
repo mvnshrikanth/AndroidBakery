@@ -49,7 +49,7 @@ public class Recipe implements Parcelable {
         this.image = image;
     }
 
-    protected Recipe(Parcel in) {
+    private Recipe(Parcel in) {
         id = in.readInt();
         name = in.readString();
         ingredients = in.createTypedArrayList(Ingredient.CREATOR);

@@ -10,15 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kaka.androidbakery.R;
+import com.example.kaka.androidbakery.adapter.TabAdapter;
 import com.example.kaka.androidbakery.data.Ingredient;
 import com.example.kaka.androidbakery.data.Recipe;
 import com.example.kaka.androidbakery.data.Step;
-import com.example.kaka.androidbakery.utilities.TabAdapter;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 /**
@@ -30,6 +31,7 @@ public class DetailFragment extends Fragment {
     ViewPager viewPager;
     @BindView(R.id.sliding_tabs)
     TabLayout tabLayout;
+    private Unbinder unbinder;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -39,10 +41,11 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        savedInstanceState = this.getArguments();
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
-        Recipe recipe = this.getArguments().getParcelable(MainFragment.RECIPE_DATA);
-        ButterKnife.bind(this, view);
+        Recipe recipe = savedInstanceState.getParcelable(MainFragment.RECIPE_DATA);
+        unbinder = ButterKnife.bind(this, view);
 
         List<Ingredient> ingredientList = recipe.getIngredients();
         List<Step> stepList = recipe.getSteps();
@@ -54,4 +57,9 @@ public class DetailFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

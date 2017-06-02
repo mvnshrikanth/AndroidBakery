@@ -1,4 +1,4 @@
-package com.example.kaka.androidbakery.utilities;
+package com.example.kaka.androidbakery.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.MyViewHolder> {
 
     private static final String LOG_TAG = IngredientAdapter.class.getSimpleName();
-    private List<Ingredient> ingredientList;
+    private final List<Ingredient> ingredientList;
 
     public IngredientAdapter(List<Ingredient> ingredientList) {
         this.ingredientList = ingredientList;
@@ -37,8 +37,10 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Ingredient ingredient = ingredientList.get(position);
-        holder.getTextViewIngredientNumber.setText((position + 1) + ". ");
-        holder.textViewIngredient.setText(ingredient.getIngredient());
+
+        String stringIngredientName = (position + 1) + ". " + ingredient.getIngredient().substring(0, 1).toUpperCase()
+                + ingredient.getIngredient().substring(1);
+        holder.textViewIngredient.setText(stringIngredientName);
         String measure = ingredient.getQuantity() + " " + ingredient.getMeasure();
         holder.textViewMeasure.setText(measure);
     }
@@ -55,8 +57,6 @@ public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.My
         TextView textViewIngredient;
         @BindView(R.id.tv_measure)
         TextView textViewMeasure;
-        @BindView(R.id.tv_ingredient_number)
-        TextView getTextViewIngredientNumber;
 
         public MyViewHolder(View itemView) {
             super(itemView);

@@ -12,10 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kaka.androidbakery.R;
+import com.example.kaka.androidbakery.adapter.RecipeAdapter;
 import com.example.kaka.androidbakery.data.Ingredient;
 import com.example.kaka.androidbakery.data.Recipe;
 import com.example.kaka.androidbakery.data.Step;
-import com.example.kaka.androidbakery.utilities.RecipeAdapter;
 import com.example.kaka.androidbakery.utilities.Utils;
 
 import org.json.JSONException;
@@ -26,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.HttpUrl;
@@ -39,16 +40,17 @@ import okhttp3.Response;
 public class MainFragment extends Fragment implements RecipeAdapter.RecipeAdapterOnClickHandler {
 
     public static final String RECIPE_DATA = "recipe";
+    public static final String BAKERY_BASE_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json";
     private static final String LOG_TAG = MainFragment.class.getSimpleName();
-    private static final String BAKERY_BASE_URL = "https://d17h27t6h515a5.cloudfront.net/topher/2017/May/59121517_baking/baking.json";
     @BindView(R.id.rv_recipe_list)
     RecyclerView recyclerView;
     @BindView(R.id.rl_empty_view_layout)
     View emptyView;
-    RecipeAdapter recipeAdapter;
+    private RecipeAdapter recipeAdapter;
     private List<Recipe> recipeList;
     private List<Step> stepList;
     private List<Ingredient> ingredientList;
+    private Unbinder unbinder;
 
     public MainFragment() {
         // Required empty public constructor
@@ -59,10 +61,10 @@ public class MainFragment extends Fragment implements RecipeAdapter.RecipeAdapte
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         recipeList = new ArrayList<>();
 
-        recipeAdapter = new RecipeAdapter(view.getContext(), MainFragment.this);
+        recipeAdapter = new RecipeAdapter(view.getContext(), this);
 
         int numberOfCol = 1;
         if (Utils.isLargeScreen(view.getContext())) {
@@ -87,6 +89,12 @@ public class MainFragment extends Fragment implements RecipeAdapter.RecipeAdapte
         intent.putExtra(RECIPE_DATA, recipe);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     private void loadRecipeData() {
