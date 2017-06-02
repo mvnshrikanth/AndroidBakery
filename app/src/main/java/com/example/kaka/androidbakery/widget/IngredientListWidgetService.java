@@ -1,9 +1,10 @@
-package com.example.kaka.androidbakery;
+package com.example.kaka.androidbakery.widget;
 
 import android.content.Intent;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
+import com.example.kaka.androidbakery.R;
 import com.example.kaka.androidbakery.data.Ingredient;
 import com.example.kaka.androidbakery.data.Recipe;
 import com.example.kaka.androidbakery.utilities.Utils;
@@ -19,7 +20,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.example.kaka.androidbakery.RecipeAppWidget.KEY_POSITION;
 import static com.example.kaka.androidbakery.ui.MainFragment.BAKERY_BASE_URL;
 
 /**
@@ -27,15 +27,12 @@ import static com.example.kaka.androidbakery.ui.MainFragment.BAKERY_BASE_URL;
  */
 
 public class IngredientListWidgetService extends RemoteViewsService {
-    public IngredientListWidgetService() {
-
-    }
 
     @Override
     public RemoteViewsFactory onGetViewFactory(final Intent intent) {
 
         return new RemoteViewsFactory() {
-            int position = intent.getIntExtra(KEY_POSITION, 0);
+            int position = intent.getIntExtra(RecipeAppWidget.KEY_POSITION, 0);
             private List<Ingredient> ingredientList = new ArrayList<Ingredient>();
             private List<Recipe> recipeList = new ArrayList<Recipe>();
 

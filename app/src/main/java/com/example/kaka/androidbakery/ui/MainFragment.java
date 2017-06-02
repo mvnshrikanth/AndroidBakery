@@ -12,10 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kaka.androidbakery.R;
+import com.example.kaka.androidbakery.adapter.RecipeAdapter;
 import com.example.kaka.androidbakery.data.Ingredient;
 import com.example.kaka.androidbakery.data.Recipe;
 import com.example.kaka.androidbakery.data.Step;
-import com.example.kaka.androidbakery.utilities.RecipeAdapter;
 import com.example.kaka.androidbakery.utilities.Utils;
 
 import org.json.JSONException;

@@ -1,4 +1,4 @@
-package com.example.kaka.androidbakery;
+package com.example.kaka.androidbakery.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import com.example.kaka.androidbakery.R;
 
 /**
  * Implementation of App Widget functionality.

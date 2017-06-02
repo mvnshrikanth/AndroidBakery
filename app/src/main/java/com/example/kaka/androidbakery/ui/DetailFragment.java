@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kaka.androidbakery.R;
+import com.example.kaka.androidbakery.adapter.TabAdapter;
 import com.example.kaka.androidbakery.data.Ingredient;
 import com.example.kaka.androidbakery.data.Recipe;
 import com.example.kaka.androidbakery.data.Step;
-import com.example.kaka.androidbakery.utilities.TabAdapter;
 
 import java.util.List;
 

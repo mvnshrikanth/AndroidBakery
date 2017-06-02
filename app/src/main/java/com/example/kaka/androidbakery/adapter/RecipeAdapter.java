@@ -1,4 +1,4 @@
-package com.example.kaka.androidbakery.utilities;
+package com.example.kaka.androidbakery.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.kaka.androidbakery.R;
+import com.example.kaka.androidbakery.adapter.StepsAdapter;
 import com.example.kaka.androidbakery.data.Step;
-import com.example.kaka.androidbakery.utilities.StepsAdapter;
 import com.example.kaka.androidbakery.utilities.Utils;
 
 import java.util.List;

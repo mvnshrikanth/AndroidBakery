@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.kaka.androidbakery.R;
+import com.example.kaka.androidbakery.adapter.IngredientAdapter;
 import com.example.kaka.androidbakery.data.Ingredient;
-import com.example.kaka.androidbakery.utilities.IngredientAdapter;
 
 import java.util.List;
 

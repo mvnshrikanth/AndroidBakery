@@ -1,4 +1,4 @@
-package com.example.kaka.androidbakery.utilities;
+package com.example.kaka.androidbakery.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
