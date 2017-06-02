@@ -26,6 +26,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.HttpUrl;
@@ -49,6 +50,7 @@ public class MainFragment extends Fragment implements RecipeAdapter.RecipeAdapte
     private List<Recipe> recipeList;
     private List<Step> stepList;
     private List<Ingredient> ingredientList;
+    private Unbinder unbinder;
 
     public MainFragment() {
         // Required empty public constructor
@@ -59,7 +61,7 @@ public class MainFragment extends Fragment implements RecipeAdapter.RecipeAdapte
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         recipeList = new ArrayList<>();
 
         recipeAdapter = new RecipeAdapter(view.getContext(), this);
@@ -87,6 +89,12 @@ public class MainFragment extends Fragment implements RecipeAdapter.RecipeAdapte
         intent.putExtra(RECIPE_DATA, recipe);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     private void loadRecipeData() {

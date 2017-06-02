@@ -32,6 +32,7 @@ import com.google.android.exoplayer2.util.Util;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 import static com.example.kaka.androidbakery.ui.StepFragment.STEP_DATA;
 
@@ -44,6 +45,7 @@ public class DetailStepFragment extends Fragment implements ExoPlayer.EventListe
     SimpleExoPlayerView simpleExoPlayerView;
     @BindView(R.id.tv_recipe_step_instruction)
     TextView textViewStepInstructions;
+    private Unbinder unbinder;
 
     private View mView;
 
@@ -60,7 +62,7 @@ public class DetailStepFragment extends Fragment implements ExoPlayer.EventListe
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail_step, container, false);
         mView = view;
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         savedInstanceState = this.getArguments();
         Step step = savedInstanceState.getParcelable(STEP_DATA);
         String videoUrl = step.getVideoURL();
@@ -88,6 +90,12 @@ public class DetailStepFragment extends Fragment implements ExoPlayer.EventListe
     public void onDestroy() {
         super.onDestroy();
         releasePlayer();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     private void releasePlayer() {

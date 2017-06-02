@@ -19,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 /**
@@ -30,6 +31,7 @@ public class DetailFragment extends Fragment {
     ViewPager viewPager;
     @BindView(R.id.sliding_tabs)
     TabLayout tabLayout;
+    private Unbinder unbinder;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -43,7 +45,7 @@ public class DetailFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail, container, false);
         Recipe recipe = savedInstanceState.getParcelable(MainFragment.RECIPE_DATA);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
 
         List<Ingredient> ingredientList = recipe.getIngredients();
         List<Step> stepList = recipe.getSteps();
@@ -55,4 +57,9 @@ public class DetailFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

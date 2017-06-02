@@ -13,7 +13,7 @@
         android:id="@+id/iv_recipe_image"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:contentDescription="@string/recipe_image"
+        android:contentDescription="@string/recipe_name"
         android:scaleType="fitXY"
         android:src="@drawable/no_image_found" />
 

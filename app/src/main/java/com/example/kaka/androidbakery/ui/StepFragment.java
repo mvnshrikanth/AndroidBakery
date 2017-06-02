@@ -21,6 +21,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 /**
@@ -32,6 +33,7 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
     public static final String STEP_DATA = "step";
     @BindView(R.id.rv_steps_list)
     RecyclerView recyclerViewStepsList;
+    private Unbinder unbinder;
 
     public StepFragment() {
         // Required empty public constructor
@@ -44,7 +46,7 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_step, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         savedInstanceState = this.getArguments();
         List<Step> stepList = savedInstanceState.getParcelableArrayList(STEPS_KEY);
         StepsAdapter stepsAdapter = new StepsAdapter(stepList, this);
@@ -72,5 +74,11 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
                 Toast.makeText(getActivity().getApplicationContext(), "No video for this step.", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

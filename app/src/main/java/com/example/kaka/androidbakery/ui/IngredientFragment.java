@@ -18,6 +18,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 /**
@@ -28,6 +29,7 @@ public class IngredientFragment extends Fragment {
     public static final String INGREDIENT_KEY = "ingredient";
     @BindView(R.id.rv_ingredients_list)
     RecyclerView recyclerViewIngredientList;
+    private Unbinder unbinder;
 
     public IngredientFragment() {
         // Required empty public constructor
@@ -39,7 +41,7 @@ public class IngredientFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ingredient, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         savedInstanceState = this.getArguments();
         List<Ingredient> ingredientList = savedInstanceState.getParcelableArrayList(INGREDIENT_KEY);
         IngredientAdapter ingredientAdapter = new IngredientAdapter(ingredientList);
@@ -52,4 +54,9 @@ public class IngredientFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }
