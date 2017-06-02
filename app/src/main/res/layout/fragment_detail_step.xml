@@ -1,9 +1,16 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.example.kaka.androidbakery.ui.DetailStepFragment">
+
+    <ImageView
+        android:id="@+id/iv_no_video_found"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/no_image_found"
+        android:visibility="gone" />
 
     <com.google.android.exoplayer2.ui.SimpleExoPlayerView
         android:id="@+id/exo_video"
@@ -14,7 +21,32 @@
         android:id="@+id/tv_recipe_step_instruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/exo_video"
         android:padding="10dp"
         android:textAppearance="?android:textAppearanceMedium" />
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/tv_recipe_step_instruction"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_previous_step"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Previous Step" />
+
+        <Button
+            android:id="@+id/bt_next_step"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Next Step" />
+    </LinearLayout>
+</RelativeLayout>

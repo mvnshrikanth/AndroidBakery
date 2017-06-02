@@ -23,4 +23,5 @@ public class DetailStepActivity extends AppCompatActivity {
                 .replace(R.id.fl_step_detail_container, detailStepFragment)
                 .commit();
     }
+
 }

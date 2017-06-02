@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.kaka.androidbakery.R;
 import com.example.kaka.androidbakery.adapter.StepsAdapter;
@@ -66,13 +65,9 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
                     .replace(R.id.fl_step_detail_container, new DetailStepFragment())
                     .commit();
         } else {
-            if (!step.getVideoURL().equals("")) {
-                Intent intent = new Intent(getActivity(), DetailStepActivity.class);
-                intent.putExtra(STEP_DATA, step);
-                startActivity(intent);
-            } else {
-                Toast.makeText(getActivity().getApplicationContext(), "No video for this step.", Toast.LENGTH_SHORT).show();
-            }
+            Intent intent = new Intent(getActivity(), DetailStepActivity.class);
+            intent.putExtra(STEP_DATA, step);
+            startActivity(intent);
         }
     }
 
