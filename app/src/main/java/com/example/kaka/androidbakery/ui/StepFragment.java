@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.example.kaka.androidbakery.adapter.StepsAdapter;
 import com.example.kaka.androidbakery.data.Step;
 import com.example.kaka.androidbakery.utilities.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,6 +33,8 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
 
     public static final String STEPS_KEY = "steps";
     public static final String STEP_DATA = "step_data";
+    public static final String STEP_LIST_DATA = "step_list_data";
+
     DetailStepFragment.Communicator communicator;
     @BindView(R.id.rv_steps_list)
     RecyclerView recyclerViewStepsList;
@@ -61,12 +65,13 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
     }
 
     @Override
-    public void onClick(Step step) {
+    public void onClick(Step step, List<Step> stepList) {
         if (Utils.isLargeScreen(getActivity())) {
-            communicator.respond(step);
+            communicator.respond(step, stepList);
         } else {
             Intent intent = new Intent(getActivity(), DetailStepActivity.class);
             intent.putExtra(STEP_DATA, step);
+            intent.putParcelableArrayListExtra(STEP_LIST_DATA, (ArrayList<? extends Parcelable>) stepList);
             startActivity(intent);
         }
     }

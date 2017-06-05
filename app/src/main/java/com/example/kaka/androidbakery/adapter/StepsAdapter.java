@@ -49,7 +49,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
     }
 
     public interface StepAdapterOnClickHandler {
-        void onClick(Step step);
+        void onClick(Step step, List<Step> stepList);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -65,7 +65,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.MyViewHolder
 
         @Override
         public void onClick(View v) {
-            stepAdapterOnClickHandler.onClick(stepList.get(getAdapterPosition()));
+            stepAdapterOnClickHandler.onClick(stepList.get(getAdapterPosition()), stepList);
         }
     }
 }

@@ -4,6 +4,7 @@ package com.example.kaka.androidbakery.ui;
 import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +29,15 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 import static com.example.kaka.androidbakery.ui.StepFragment.STEP_DATA;
+import static com.example.kaka.androidbakery.ui.StepFragment.STEP_LIST_DATA;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,6 +61,7 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
 
     private SimpleExoPlayer simpleExoPlayer;
     private Step step;
+    private List<Step> stepList;
 
     public DetailStepFragment() {
         // Required empty public constructor
@@ -72,6 +78,7 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
 
         savedInstanceState = this.getArguments();
         step = savedInstanceState.getParcelable(STEP_DATA);
+        stepList = savedInstanceState.getParcelableArrayList(STEP_LIST_DATA);
         String videoUrl = step.getVideoURL();
         if (!videoUrl.equals("")) {
             simpleExoPlayerView.setVisibility(View.VISIBLE);
@@ -141,6 +148,7 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
         Bundle bundle = new Bundle();
         DetailStepFragment detailStepFragment = new DetailStepFragment();
         bundle.putParcelable(STEP_DATA, step);
+        bundle.putParcelableArrayList(STEP_LIST_DATA, (ArrayList<? extends Parcelable>) stepList);
         detailStepFragment.setArguments(bundle);
         getFragmentManager().beginTransaction()
                 .replace(R.id.fl_step_detail_container, detailStepFragment)
@@ -148,6 +156,6 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
     }
 
     interface Communicator {
-        void respond(Step step);
+        void respond(Step step, List<Step> stepList);
     }
 }
