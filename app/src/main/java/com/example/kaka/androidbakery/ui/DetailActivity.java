@@ -5,8 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.kaka.androidbakery.R;
 import com.example.kaka.androidbakery.data.Recipe;
+import com.example.kaka.androidbakery.data.Step;
 
-public class DetailActivity extends AppCompatActivity {
+import static com.example.kaka.androidbakery.ui.StepFragment.STEP_DATA;
+
+public class DetailActivity extends AppCompatActivity implements DetailStepFragment.Communicator {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +27,16 @@ public class DetailActivity extends AppCompatActivity {
                     .replace(R.id.fl_detail_container, detailFragment)
                     .commit();
         }
+    }
+
+    @Override
+    public void respond(Step step) {
+        Bundle bundle = new Bundle();
+        DetailStepFragment detailStepFragment = new DetailStepFragment();
+        bundle.putParcelable(STEP_DATA, step);
+        detailStepFragment.setArguments(bundle);
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fl_step_detail_container, detailStepFragment)
+                .commit();
     }
 }

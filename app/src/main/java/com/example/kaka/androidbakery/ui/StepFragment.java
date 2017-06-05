@@ -1,6 +1,7 @@
 package com.example.kaka.androidbakery.ui;
 
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +30,8 @@ import butterknife.Unbinder;
 public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOnClickHandler {
 
     public static final String STEPS_KEY = "steps";
-    public static final String STEP_DATA = "step";
+    public static final String STEP_DATA = "step_data";
+    DetailStepFragment.Communicator communicator;
     @BindView(R.id.rv_steps_list)
     RecyclerView recyclerViewStepsList;
     private Unbinder unbinder;
@@ -61,9 +63,7 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
     @Override
     public void onClick(Step step) {
         if (Utils.isLargeScreen(getActivity())) {
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fl_step_detail_container, new DetailStepFragment())
-                    .commit();
+            communicator.respond(step);
         } else {
             Intent intent = new Intent(getActivity(), DetailStepActivity.class);
             intent.putExtra(STEP_DATA, step);
@@ -75,5 +75,11 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        communicator = (DetailStepFragment.Communicator) activity;
     }
 }

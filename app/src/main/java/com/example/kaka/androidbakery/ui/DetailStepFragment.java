@@ -37,7 +37,7 @@ import static com.example.kaka.androidbakery.ui.StepFragment.STEP_DATA;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailStepFragment extends Fragment {
+public class DetailStepFragment extends Fragment implements View.OnClickListener {
 
     @BindView(R.id.exo_video)
     SimpleExoPlayerView simpleExoPlayerView;
@@ -55,6 +55,7 @@ public class DetailStepFragment extends Fragment {
     private View mView;
 
     private SimpleExoPlayer simpleExoPlayer;
+    private Step step;
 
     public DetailStepFragment() {
         // Required empty public constructor
@@ -70,7 +71,7 @@ public class DetailStepFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
 
         savedInstanceState = this.getArguments();
-        Step step = savedInstanceState.getParcelable(STEP_DATA);
+        step = savedInstanceState.getParcelable(STEP_DATA);
         String videoUrl = step.getVideoURL();
         if (!videoUrl.equals("")) {
             simpleExoPlayerView.setVisibility(View.VISIBLE);
@@ -95,34 +96,11 @@ public class DetailStepFragment extends Fragment {
                     .into(imageViewNoVideo);
         }
         textViewStepInstructions.setText(step.getDescription());
-        buttonNextStep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                swapFragments(v);
-            }
-        });
-        buttonPreviousStep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                swapFragments(v);
-            }
-        });
-        return view;
-    }
 
-    private void swapFragments(View v) {
-        String strViewName = null;
-        switch (v.getId()) {
-            case R.id.bt_next_step:
-                strViewName = "Next Step";
-                break;
-            case R.id.bt_previous_step:
-                strViewName = "Previous Step";
-                break;
-            default:
-                strViewName = "Sunny";
-        }
-        Toast.makeText(getActivity().getApplicationContext(), strViewName, Toast.LENGTH_SHORT).show();
+        buttonNextStep.setOnClickListener(this);
+        buttonPreviousStep.setOnClickListener(this);
+
+        return view;
     }
 
     @Override
@@ -145,4 +123,31 @@ public class DetailStepFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        String strViewName = null;
+        switch (v.getId()) {
+            case R.id.bt_next_step:
+                strViewName = "Next Step";
+                break;
+            case R.id.bt_previous_step:
+                strViewName = "Previous Step";
+                break;
+            default:
+                strViewName = "Sunny";
+        }
+        Toast.makeText(getActivity().getApplicationContext(), strViewName, Toast.LENGTH_SHORT).show();
+
+        Bundle bundle = new Bundle();
+        DetailStepFragment detailStepFragment = new DetailStepFragment();
+        bundle.putParcelable(STEP_DATA, step);
+        detailStepFragment.setArguments(bundle);
+        getFragmentManager().beginTransaction()
+                .replace(R.id.fl_step_detail_container, detailStepFragment)
+                .commit();
+    }
+
+    interface Communicator {
+        void respond(Step step);
+    }
 }
