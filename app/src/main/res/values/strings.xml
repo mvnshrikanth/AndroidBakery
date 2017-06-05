@@ -9,4 +9,7 @@
     <string name="empty_ingredient_widget">No Recipes</string>
     <string name="widget_back_to_recipes">&lt; Back to Recipes</string>
     <string name="swipe_text">swipe</string>
+    <string name="no_video_found">No video found for this step</string>
+    <string name="previous_step">Previous Step</string>
+    <string name="next_step">Next Step</string>
 </resources>

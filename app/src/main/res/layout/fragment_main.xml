@@ -29,7 +29,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/iv_empty_view_image"
             android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif-medium"
             android:text="@string/empty_view_title_text"
             android:textAppearance="?android:textAppearanceMedium" />
     </RelativeLayout>

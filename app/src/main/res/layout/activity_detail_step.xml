@@ -4,5 +4,5 @@
     android:id="@+id/fl_step_detail_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="3dp"
+    android:padding="@dimen/framelayout_padding"
     tools:context="com.example.kaka.androidbakery.ui.DetailStepActivity" />

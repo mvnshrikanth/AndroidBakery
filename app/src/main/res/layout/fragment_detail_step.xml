@@ -7,22 +7,23 @@
     <ImageView
         android:id="@+id/iv_no_video_found"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="@dimen/no_image_height"
+        android:contentDescription="@string/no_video_found"
         android:scaleType="fitXY"
-        android:src="@drawable/no_image_found"
-        android:visibility="gone" />
+        android:src="@drawable/no_image_found" />
 
     <com.google.android.exoplayer2.ui.SimpleExoPlayerView
         android:id="@+id/exo_video"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_no_video_found" />
 
     <TextView
         android:id="@+id/tv_recipe_step_instruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/exo_video"
-        android:padding="10dp"
+        android:padding="@dimen/instruction_text_padding"
         android:textAppearance="?android:textAppearanceMedium" />
 
     <LinearLayout
@@ -39,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Previous Step" />
+            android:text="@string/previous_step" />
 
         <Button
             android:id="@+id/bt_next_step"
@@ -47,6 +48,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Next Step" />
+            android:text="@string/next_step" />
     </LinearLayout>
 </RelativeLayout>

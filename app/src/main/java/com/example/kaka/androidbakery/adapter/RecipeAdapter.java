@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.kaka.androidbakery.R;
 import com.example.kaka.androidbakery.data.Recipe;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,27 +47,20 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
 
         switch (recipe.getName()) {
             case "Nutella Pie":
-                Picasso.with(context)
-                        .load(R.drawable.nutella_pie)
-                        .into(holder.imageViewRecipe);
+                holder.imageViewRecipe.setImageResource(R.drawable.nutella_pie);
                 break;
             case "Brownies":
-                Picasso.with(context)
-                        .load(R.drawable.brownie)
-                        .into(holder.imageViewRecipe);
+                holder.imageViewRecipe.setImageResource(R.drawable.brownie);
                 break;
             case "Yellow Cake":
-                Picasso.with(context)
-                        .load(R.drawable.yellow_cake)
-                        .into(holder.imageViewRecipe);
+                holder.imageViewRecipe.setImageResource(R.drawable.yellow_cake);
+                break;
+            case "Cheesecake":
+                holder.imageViewRecipe.setImageResource(R.drawable.cheesecake);
                 break;
             default:
-                Picasso.with(context)
-                        .load(R.drawable.cheesecake)
-                        .into(holder.imageViewRecipe);
-                break;
+                holder.imageViewRecipe.setImageResource(R.drawable.no_image_found);
         }
-
         holder.textViewRecipeName.setText(recipe.getName());
 
     }

@@ -27,7 +27,6 @@ import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,12 +43,12 @@ import static com.example.kaka.androidbakery.ui.StepFragment.STEP_LIST_DATA;
  */
 public class DetailStepFragment extends Fragment implements View.OnClickListener {
 
+    @BindView(R.id.iv_no_video_found)
+    ImageView imageViewNoVideo;
     @BindView(R.id.exo_video)
     SimpleExoPlayerView simpleExoPlayerView;
     @BindView(R.id.tv_recipe_step_instruction)
     TextView textViewStepInstructions;
-    @BindView(R.id.iv_no_video_found)
-    ImageView imageViewNoVideo;
     @BindView(R.id.bt_previous_step)
     Button buttonPreviousStep;
     @BindView(R.id.bt_next_step)
@@ -98,9 +97,8 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
         } else {
             simpleExoPlayerView.setVisibility(View.GONE);
             imageViewNoVideo.setVisibility(View.VISIBLE);
-            Picasso.with(getActivity().getApplicationContext())
-                    .load(R.drawable.no_image_found)
-                    .into(imageViewNoVideo);
+            imageViewNoVideo.setImageResource(R.drawable.no_image_found);
+
         }
         textViewStepInstructions.setText(step.getDescription());
 
@@ -132,27 +130,48 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        String strViewName = null;
-        switch (v.getId()) {
-            case R.id.bt_next_step:
-                strViewName = "Next Step";
-                break;
-            case R.id.bt_previous_step:
-                strViewName = "Previous Step";
-                break;
-            default:
-                strViewName = "Sunny";
-        }
-        Toast.makeText(getActivity().getApplicationContext(), strViewName, Toast.LENGTH_SHORT).show();
+        int currIndexOfStepList, nexIndexOfStepList, prevIndexOfStepList;
+        currIndexOfStepList = step.getId();
+        prevIndexOfStepList = currIndexOfStepList - 1;
+        nexIndexOfStepList = currIndexOfStepList + 1;
+
+        Step bundleStep = step;
+        boolean booleanReplace = false;
 
         Bundle bundle = new Bundle();
         DetailStepFragment detailStepFragment = new DetailStepFragment();
-        bundle.putParcelable(STEP_DATA, step);
-        bundle.putParcelableArrayList(STEP_LIST_DATA, (ArrayList<? extends Parcelable>) stepList);
-        detailStepFragment.setArguments(bundle);
-        getFragmentManager().beginTransaction()
-                .replace(R.id.fl_step_detail_container, detailStepFragment)
-                .commit();
+
+        switch (v.getId()) {
+            case R.id.bt_next_step:
+                if (nexIndexOfStepList >= stepList.size()) {
+                    bundleStep = step;
+                    booleanReplace = false;
+                    Toast.makeText(getActivity().getApplicationContext(), "This was the last step.", Toast.LENGTH_SHORT).show();
+                } else {
+                    booleanReplace = true;
+                    bundleStep = stepList.get(nexIndexOfStepList);
+                }
+                break;
+            default:
+                if (prevIndexOfStepList < 0) {
+                    bundleStep = step;
+                    booleanReplace = false;
+                    Toast.makeText(getActivity().getApplicationContext(), "This is the first step cant go back.", Toast.LENGTH_SHORT).show();
+                } else {
+                    booleanReplace = true;
+                    bundleStep = stepList.get(prevIndexOfStepList);
+                }
+        }
+
+
+        if (booleanReplace) {
+            bundle.putParcelable(STEP_DATA, bundleStep);
+            bundle.putParcelableArrayList(STEP_LIST_DATA, (ArrayList<? extends Parcelable>) stepList);
+            detailStepFragment.setArguments(bundle);
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fl_step_detail_container, detailStepFragment)
+                    .commit();
+        }
     }
 
     interface Communicator {
