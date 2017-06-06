@@ -1,6 +1,5 @@
 package com.example.kaka.androidbakery.adapter;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,19 +16,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by Kaka on 5/13/2017.
- */
 
 public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHolder> {
 
     private static final String LOG_TAG = RecipeAdapter.class.getSimpleName();
     private final RecipeAdapterOnClickHandler recipeAdapterOnClickHandler;
-    private final Context context;
     private List<Recipe> recipeList;
 
-    public RecipeAdapter(Context context, RecipeAdapterOnClickHandler recipeAdapterOnClickHandler) {
-        this.context = context;
+    public RecipeAdapter(RecipeAdapterOnClickHandler recipeAdapterOnClickHandler) {
         recipeList = new ArrayList<>();
         this.recipeAdapterOnClickHandler = recipeAdapterOnClickHandler;
     }

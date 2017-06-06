@@ -21,16 +21,13 @@ import okhttp3.Response;
 
 import static com.example.kaka.androidbakery.ui.MainFragment.BAKERY_BASE_URL;
 
-/**
- * Created by Kaka on 6/1/2017.
- */
 
 public class RecipeListWidgetService extends RemoteViewsService {
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
         return new RemoteViewsFactory() {
-            private List<Recipe> recipeList = new ArrayList<Recipe>();
+            private List<Recipe> recipeList = new ArrayList<>();
 
             @Override
             public void onCreate() {
@@ -102,9 +99,7 @@ public class RecipeListWidgetService extends RemoteViewsService {
                 try {
                     Response response = client.newCall(request).execute();
                     recipeList = Utils.getRecipeListFromJsonString(response.body().string());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
+                } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
             }

@@ -47,8 +47,8 @@ public class DetailFragment extends Fragment {
         Recipe recipe = savedInstanceState.getParcelable(MainFragment.RECIPE_DATA);
         unbinder = ButterKnife.bind(this, view);
 
-        List<Ingredient> ingredientList = recipe.getIngredients();
-        List<Step> stepList = recipe.getSteps();
+        List<Ingredient> ingredientList = recipe != null ? recipe.getIngredients() : null;
+        List<Step> stepList = recipe != null ? recipe.getSteps() : null;
 
         TabAdapter tabAdapter = new TabAdapter(getChildFragmentManager(), ingredientList, stepList);
         viewPager.setAdapter(tabAdapter);

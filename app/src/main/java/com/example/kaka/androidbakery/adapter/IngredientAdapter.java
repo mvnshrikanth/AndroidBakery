@@ -14,10 +14,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by Kaka on 5/19/2017.
- */
-
 public class IngredientAdapter extends RecyclerView.Adapter<IngredientAdapter.MyViewHolder> {
 
     private static final String LOG_TAG = IngredientAdapter.class.getSimpleName();

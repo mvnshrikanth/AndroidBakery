@@ -22,9 +22,6 @@ import okhttp3.Response;
 
 import static com.example.kaka.androidbakery.ui.MainFragment.BAKERY_BASE_URL;
 
-/**
- * Created by Kaka on 6/1/2017.
- */
 
 public class IngredientListWidgetService extends RemoteViewsService {
 
@@ -33,8 +30,8 @@ public class IngredientListWidgetService extends RemoteViewsService {
 
         return new RemoteViewsFactory() {
             int position = intent.getIntExtra(RecipeAppWidget.KEY_POSITION, 0);
-            private List<Ingredient> ingredientList = new ArrayList<Ingredient>();
-            private List<Recipe> recipeList = new ArrayList<Recipe>();
+            private List<Ingredient> ingredientList = new ArrayList<>();
+            private List<Recipe> recipeList = new ArrayList<>();
 
             @Override
             public void onCreate() {
@@ -106,9 +103,7 @@ public class IngredientListWidgetService extends RemoteViewsService {
                 try {
                     Response response = client.newCall(request).execute();
                     recipeList = Utils.getRecipeListFromJsonString(response.body().string());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
+                } catch (IOException | JSONException e) {
                     e.printStackTrace();
                 }
             }

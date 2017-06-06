@@ -12,7 +12,7 @@
         android:layout_weight="6"
         android:padding="@dimen/ingredient_text_padding"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size"
         tools:text="Chocolate" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_weight="2"
         android:padding="@dimen/ingredient_text_padding"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textSize="@dimen/text_size"
         tools:text="3 cups" />
 
 </LinearLayout>

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.kaka.androidbakery.R;
 import com.example.kaka.androidbakery.data.Step;
+import com.example.kaka.androidbakery.utilities.Utils;
 import com.google.android.exoplayer2.DefaultLoadControl;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.LoadControl;
@@ -56,8 +57,6 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
 
     private Unbinder unbinder;
 
-    private View mView;
-
     private SimpleExoPlayer simpleExoPlayer;
     private Step step;
     private List<Step> stepList;
@@ -72,7 +71,6 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_detail_step, container, false);
-        mView = view;
         unbinder = ButterKnife.bind(this, view);
 
         savedInstanceState = this.getArguments();
@@ -101,9 +99,13 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
 
         }
         textViewStepInstructions.setText(step.getDescription());
-
-        buttonNextStep.setOnClickListener(this);
-        buttonPreviousStep.setOnClickListener(this);
+        if (Utils.isLargeScreen(view.getContext())) {
+            buttonPreviousStep.setVisibility(View.GONE);
+            buttonNextStep.setVisibility(View.GONE);
+        } else {
+            buttonNextStep.setOnClickListener(this);
+            buttonPreviousStep.setOnClickListener(this);
+        }
 
         return view;
     }
@@ -135,8 +137,8 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
         prevIndexOfStepList = currIndexOfStepList - 1;
         nexIndexOfStepList = currIndexOfStepList + 1;
 
-        Step bundleStep = step;
-        boolean booleanReplace = false;
+        Step bundleStep;
+        boolean booleanReplace;
 
         Bundle bundle = new Bundle();
         DetailStepFragment detailStepFragment = new DetailStepFragment();

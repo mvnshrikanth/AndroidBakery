@@ -1,12 +1,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     android:orientation="vertical"
     android:padding="@dimen/widget_margin">
 
-    <RelativeLayout
-        android:id="@+id/rl_widget_recipe_layout"
+    <TextView
+        android:id="@+id/tv_app_widget_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@android:color/black"
+        android:textSize="30sp" />
+
+    <FrameLayout
+        android:id="@+id/fl_widget_recipe_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -19,11 +28,11 @@
             android:id="@+id/tv_widgetEmptyView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:text="@string/empty_recipe_widget"
-            android:textColor="#ffffff"
-            android:textSize="16sp" />
-    </RelativeLayout>
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size" />
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/ll_widget_ingredients_layout"
@@ -32,14 +41,27 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <TextView
-            android:id="@+id/tv_widget_back_button"
+        <Button
+            android:id="@+id/bt_widget_back_button"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:text="@string/widget_back_to_recipes" />
+            android:padding="@dimen/back_button_padding"
+            android:text="@string/widget_back_to_recipes"
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/tv_ingredients_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/ingredient_text_padding"
+            android:text="@string/list_of_ingredients"
+            android:textColor="@android:color/white"
+            android:textSize="24sp" />
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -52,10 +74,11 @@
                 android:id="@+id/tv_widget_ingredients_empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_gravity="center"
                 android:text="@string/empty_ingredient_widget" />
 
-        </RelativeLayout>
+        </FrameLayout>
+
     </LinearLayout>
 
 </LinearLayout>

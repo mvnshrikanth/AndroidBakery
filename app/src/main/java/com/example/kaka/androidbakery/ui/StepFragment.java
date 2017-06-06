@@ -3,6 +3,7 @@ package com.example.kaka.androidbakery.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -34,10 +35,9 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
     public static final String STEPS_KEY = "steps";
     public static final String STEP_DATA = "step_data";
     public static final String STEP_LIST_DATA = "step_list_data";
-
-    DetailStepFragment.Communicator communicator;
     @BindView(R.id.rv_steps_list)
     RecyclerView recyclerViewStepsList;
+    private DetailStepFragment.Communicator communicator;
     private Unbinder unbinder;
 
     public StepFragment() {
@@ -83,8 +83,9 @@ public class StepFragment extends Fragment implements StepsAdapter.StepAdapterOn
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Activity activity = (Activity) context;
         communicator = (DetailStepFragment.Communicator) activity;
     }
 }

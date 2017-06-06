@@ -9,28 +9,34 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import com.example.kaka.androidbakery.R;
+import com.example.kaka.androidbakery.ui.MainActivity;
 
 /**
  * Implementation of App Widget functionality.
  */
 public class RecipeAppWidget extends AppWidgetProvider {
 
-    public static final String ACTION_SHOW_INGREDIENTS_STRING = "showIngredients";
-    public static final String ACTION_BACK_TO_RECIPES_STRING = "backToRecipes";
     public static final String KEY_POSITION = "position";
-    public static final String KEY_WIDGET_ID = "widgetId";
+    private static final String ACTION_SHOW_INGREDIENTS_STRING = "showIngredients";
+    private static final String ACTION_BACK_TO_RECIPES_STRING = "backToRecipes";
+    private static final String KEY_WIDGET_ID = "widgetId";
     private static final int ACTION_SHOW_RECIPES_INT = 1001;
     private static final int ACTION_SHOW_INGREDIENTS_INT = 1002;
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
-                                int appWidgetId, int action, Intent intentFromReceive) {
+    private static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+                                        int appWidgetId, int action, Intent intentFromReceive) {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.recipe_app_widget);
 
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        views.setOnClickPendingIntent(R.id.tv_app_widget_label, pendingIntent);
+
         switch (action) {
             case ACTION_SHOW_RECIPES_INT:
-                views.setViewVisibility(R.id.rl_widget_recipe_layout, View.VISIBLE);
+                views.setViewVisibility(R.id.fl_widget_recipe_layout, View.VISIBLE);
                 views.setViewVisibility(R.id.ll_widget_ingredients_layout, View.GONE);
+                views.setViewVisibility(R.id.tv_app_widget_label, View.VISIBLE);
 
                 Intent intentRecipeListWidget = new Intent(context, RecipeListWidgetService.class);
                 views.setRemoteAdapter(R.id.lv_widgetRecipeList, intentRecipeListWidget);
@@ -47,7 +53,8 @@ public class RecipeAppWidget extends AppWidgetProvider {
                 break;
             case ACTION_SHOW_INGREDIENTS_INT:
                 views.setViewVisibility(R.id.ll_widget_ingredients_layout, View.VISIBLE);
-                views.setViewVisibility(R.id.rl_widget_recipe_layout, View.GONE);
+                views.setViewVisibility(R.id.fl_widget_recipe_layout, View.GONE);
+                views.setViewVisibility(R.id.tv_app_widget_label, View.GONE);
 
                 Intent intentIngredientListWidget = new Intent(context, IngredientListWidgetService.class);
                 intentIngredientListWidget.putExtra(KEY_POSITION, intentFromReceive.getIntExtra(KEY_POSITION, 0));
@@ -59,7 +66,7 @@ public class RecipeAppWidget extends AppWidgetProvider {
                 intentRecipe.putExtra(KEY_WIDGET_ID, appWidgetId);
                 PendingIntent pendingRecipeIntent = PendingIntent.getBroadcast(context, 0, intentRecipe, PendingIntent.FLAG_UPDATE_CURRENT);
                 views.setPendingIntentTemplate(R.id.lv_widget_ingredients_view, pendingRecipeIntent);
-                views.setOnClickPendingIntent(R.id.tv_widget_back_button, pendingRecipeIntent);
+                views.setOnClickPendingIntent(R.id.bt_widget_back_button, pendingRecipeIntent);
 
                 appWidgetManager.updateAppWidget(appWidgetId, views);
                 break;

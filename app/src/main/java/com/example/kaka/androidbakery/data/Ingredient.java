@@ -26,11 +26,6 @@ public class Ingredient implements Parcelable {
     public Ingredient() {
     }
 
-    /**
-     * @param measure
-     * @param ingredient
-     * @param quantity
-     */
     public Ingredient(int quantity, String measure, String ingredient) {
         super();
         this.quantity = quantity;

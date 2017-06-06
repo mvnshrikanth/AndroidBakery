@@ -64,7 +64,7 @@ public class MainFragment extends Fragment implements RecipeAdapter.RecipeAdapte
         unbinder = ButterKnife.bind(this, view);
         recipeList = new ArrayList<>();
 
-        recipeAdapter = new RecipeAdapter(view.getContext(), this);
+        recipeAdapter = new RecipeAdapter(this);
 
         int numberOfCol = 1;
         if (Utils.isLargeScreen(view.getContext())) {

@@ -14,9 +14,6 @@ import com.example.kaka.androidbakery.ui.StepFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Kaka on 5/20/2017.
- */
 
 public class TabAdapter extends FragmentPagerAdapter {
 

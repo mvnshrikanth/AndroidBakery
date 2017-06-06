@@ -16,4 +16,6 @@ http://developer.android.com/guide/topics/appwidgets/index.html#CreatingLayout
     <dimen name="corner_radius">8dp</dimen>
     <dimen name="card_text_padding">10dp</dimen>
     <dimen name="step_text_padding">10dp</dimen>
+    <dimen name="text_size">20sp</dimen>
+    <dimen name="back_button_padding">10dp</dimen>
 </resources>

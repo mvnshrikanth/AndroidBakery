@@ -17,10 +17,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Kaka on 5/13/2017.
- */
-
 public class Utils {
 
     private static final String RECIPE_ID = "id";
