@@ -18,7 +18,7 @@ public class RecipeAppWidget extends AppWidgetProvider {
 
     public static final String KEY_POSITION = "position";
     private static final String ACTION_SHOW_INGREDIENTS_STRING = "showIngredients";
-    private static final String ACTION_BACK_TO_RECIPES_STRING = "backToRecipes";
+    private static final String ACTION_SHOW_RECIPES_STRING = "backToRecipes";
     private static final String KEY_WIDGET_ID = "widgetId";
     private static final int ACTION_SHOW_RECIPES_INT = 1001;
     private static final int ACTION_SHOW_INGREDIENTS_INT = 1002;
@@ -42,7 +42,6 @@ public class RecipeAppWidget extends AppWidgetProvider {
                 views.setRemoteAdapter(R.id.lv_widgetRecipeList, intentRecipeListWidget);
                 views.setEmptyView(R.id.lv_widgetRecipeList, R.id.tv_widgetEmptyView);
 
-
                 Intent intentIngredient = new Intent(context, RecipeAppWidget.class);
                 intentIngredient.setAction(ACTION_SHOW_INGREDIENTS_STRING);
                 intentIngredient.putExtra(KEY_WIDGET_ID, appWidgetId);
@@ -62,7 +61,7 @@ public class RecipeAppWidget extends AppWidgetProvider {
                 views.setEmptyView(R.id.lv_widget_ingredients_view, R.id.tv_widget_ingredients_empty);
 
                 Intent intentRecipe = new Intent(context, RecipeAppWidget.class);
-                intentRecipe.setAction(ACTION_BACK_TO_RECIPES_STRING);
+                intentRecipe.setAction(ACTION_SHOW_RECIPES_STRING);
                 intentRecipe.putExtra(KEY_WIDGET_ID, appWidgetId);
                 PendingIntent pendingRecipeIntent = PendingIntent.getBroadcast(context, 0, intentRecipe, PendingIntent.FLAG_UPDATE_CURRENT);
                 views.setPendingIntentTemplate(R.id.lv_widget_ingredients_view, pendingRecipeIntent);
@@ -82,7 +81,7 @@ public class RecipeAppWidget extends AppWidgetProvider {
         if (intent.getAction().equals(ACTION_SHOW_INGREDIENTS_STRING)) {
             int appWidgetId = intent.getIntExtra(KEY_WIDGET_ID, 0);
             updateAppWidget(context, appWidgetManager, appWidgetId, ACTION_SHOW_INGREDIENTS_INT, intent);
-        } else if (intent.getAction().equals(ACTION_BACK_TO_RECIPES_STRING)) {
+        } else if (intent.getAction().equals(ACTION_SHOW_RECIPES_STRING)) {
             int appWidgetId = intent.getIntExtra(KEY_WIDGET_ID, 0);
             updateAppWidget(context, appWidgetManager, appWidgetId, ACTION_SHOW_RECIPES_INT, intent);
         }

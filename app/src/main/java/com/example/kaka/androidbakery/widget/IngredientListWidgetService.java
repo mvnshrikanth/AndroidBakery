@@ -62,7 +62,7 @@ public class IngredientListWidgetService extends RemoteViewsService {
             public RemoteViews getViewAt(int position) {
                 Ingredient ingredient = ingredientList.get(position);
                 String stringIngredientName = (position + 1) + ". " + ingredient.getIngredient().substring(0, 1).toUpperCase()
-                        + ingredient.getIngredient().substring(1);
+                        + ingredient.getIngredient().substring(1); //Capitalize the first letter in the ingredient name
                 RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.item_ingredient_widget);
                 remoteViews.setTextViewText(R.id.tv_widget_ingredient, stringIngredientName);
                 remoteViews.setTextViewText(R.id.tv_widget_measure, ingredient.getQuantity() + " " + ingredient.getMeasure());
