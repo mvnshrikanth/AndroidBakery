@@ -56,6 +56,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
                 holder.imageViewRecipe.setImageResource(R.drawable.no_image_found);
         }
         holder.textViewRecipeName.setText(recipe.getName());
+        holder.textViewServings.setText("Servings: " + " " + Integer.toString(recipe.getServings()));
+
 
     }
 
@@ -81,6 +83,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.MyViewHold
 
         @BindView(R.id.tv_recipe_name)
         TextView textViewRecipeName;
+
+        @BindView(R.id.tv_servings)
+        TextView textViewServings;
 
         public MyViewHolder(View itemView) {
             super(itemView);
