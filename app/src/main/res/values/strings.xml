@@ -11,4 +11,6 @@
     <string name="previous_step">Previous Step</string>
     <string name="next_step">Next Step</string>
     <string name="list_of_ingredients">List of Ingredients</string>
+    <string name="recipe_3_step_2_instructions_for_testiing">1. Preheat the oven to 350\u00b0F. Butter the bottoms and sides of two 9\" round pans with 2\"-high sides. Cover the bottoms of the pans with rounds of parchment paper, and butter the paper as well."</string>
+    <string name="step_descriptions_for_testing">Recipe Introduction</string>
 </resources>
