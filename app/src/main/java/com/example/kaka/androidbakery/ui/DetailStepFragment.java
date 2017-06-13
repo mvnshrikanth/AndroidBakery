@@ -96,7 +96,6 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
             simpleExoPlayerView.setVisibility(View.GONE);
             imageViewNoVideo.setVisibility(View.VISIBLE);
             imageViewNoVideo.setImageResource(R.drawable.no_image_found);
-
         }
         textViewStepInstructions.setText(step.getDescription());
         if (Utils.isLargeScreen(view.getContext())) {
@@ -106,13 +105,24 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
             buttonNextStep.setOnClickListener(this);
             buttonPreviousStep.setOnClickListener(this);
         }
-
         return view;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        releasePlayer();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        releasePlayer();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
         releasePlayer();
     }
 
@@ -164,7 +174,6 @@ public class DetailStepFragment extends Fragment implements View.OnClickListener
                     bundleStep = stepList.get(prevIndexOfStepList);
                 }
         }
-
 
         if (booleanReplace) {
             bundle.putParcelable(STEP_DATA, bundleStep);

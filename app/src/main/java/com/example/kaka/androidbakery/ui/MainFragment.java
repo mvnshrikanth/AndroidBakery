@@ -84,11 +84,9 @@ public class MainFragment extends Fragment implements RecipeAdapter.RecipeAdapte
 
     @Override
     public void onClick(Recipe recipe) {
-
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra(RECIPE_DATA, recipe);
         startActivity(intent);
-
     }
 
     @Override
@@ -100,9 +98,7 @@ public class MainFragment extends Fragment implements RecipeAdapter.RecipeAdapte
     private void loadRecipeData() {
 
         OkHttpClient client = new OkHttpClient();
-
         HttpUrl.Builder builder = HttpUrl.parse(BAKERY_BASE_URL).newBuilder();
-
         String url = builder.toString();
 
         final Request request = new Request.Builder()

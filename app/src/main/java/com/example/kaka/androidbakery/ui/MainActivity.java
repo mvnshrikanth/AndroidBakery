@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         getFragmentManager().beginTransaction()
-                .add(R.id.fl_main_container, new MainFragment())
+                .replace(R.id.fl_main_container, new MainFragment())
                 .commit();
 
     }
