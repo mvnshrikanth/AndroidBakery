@@ -28,7 +28,7 @@ import static org.hamcrest.Matchers.allOf;
 @RunWith(AndroidJUnit4.class)
 public class MainActivityBasicTest {
 
-    public static final int RECIPE_LIST_ITEM_TO_CLICK = 2;
+    private static final int RECIPE_LIST_ITEM_TO_CLICK = 2;
 
     @Rule
     public ActivityTestRule<MainActivity> mMainActivityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class);
@@ -60,11 +60,10 @@ public class MainActivityBasicTest {
         Thread.sleep(1000);
         onView(withId(R.id.bt_next_step))
                 .perform(click());
-//
-//        Thread.sleep(1000);
-//        onView(withId(R.id.tv_recipe_step_instruction))
-//                .check(matches(withText(mMainActivityTestRule.getActivity().getResources().getString(R.string.recipe_3_step_2_instructions_for_testiing))));
 
+        Thread.sleep(1000);
+        onView(withId(R.id.tv_recipe_step_instruction))
+                .check(matches(withText(mMainActivityTestRule.getActivity().getResources().getString(R.string.recipe_3_step_2_instructions_for_testiing))));
 
     }
 
