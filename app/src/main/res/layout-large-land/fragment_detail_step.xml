@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kaka.androidbakery.ui.DetailStepFragment">
+
+    <ImageView
+        android:id="@+id/iv_no_video_found"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/no_image_height"
+        android:contentDescription="@string/no_video_found"
+        android:scaleType="fitXY"
+        android:src="@drawable/no_image_found" />
+
+    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+        android:id="@+id/exo_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_no_video_found" />
+
+    <ScrollView
+        android:id="@+id/sv_recipe_step_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/exo_video">
+
+        <TextView
+            android:id="@+id/tv_recipe_step_instruction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/instruction_text_padding"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size" />
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/sv_recipe_step_instructions"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_previous_step"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/previous_step" />
+
+        <Button
+            android:id="@+id/bt_next_step"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/next_step" />
+    </LinearLayout>
+</RelativeLayout>
